@@ -98,7 +98,7 @@ void loop() {
 
 int degrees;
 
-  // sweep from 0-180 degree at 10 degrees per second
+  // sweep from 0-180 degree at 20 degrees per second
   for (degrees = 0; degrees <= 180 ; degrees++) {
     DowServo.write(degrees);  // set servo position
     delay(50);               // wait 1/20th of a second
