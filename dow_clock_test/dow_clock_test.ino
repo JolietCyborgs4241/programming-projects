@@ -12,7 +12,7 @@
 #include <Servo.h>
 
 #define SERVO_PIN           9       // needs to be on a PWM-capable pin
-#define LED_PIN             4       // can be mostly any pin
+#define LED_PIN             13       // can be mostly any pin but we'll use the standard on-board LED
 #define BUTTON_PIN          3       // external interrupts have to be on 2 or 3 on the Nano because of the ATmega328 limitations
                                     // different on differnt processors (some can use any digital pin)
                                     
