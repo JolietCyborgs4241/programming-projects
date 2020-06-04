@@ -3,9 +3,9 @@ Not specifically robot-related software but intended for learning, demos, and ot
 
 Contents include:
 
-## dow_clock-Test
+## dow_clock_test
 
-Test software for the Day of the Week clock.  This includes support for the "setting" button, a single LED, and servo output.  The test program uses the setting button to toggle the LED on / off and the servo starts at one end and slowly sweep through 180 degrees and then positions the pointer at 90 degrees (typically right in the middle of the "WED" day).
+Test software for the Day of the Week clock.  This includes support for the "setting" button, a single LED, and servo output.  The test program uses the setting button to toggle the LED on / off and the servo starts at one end and slowly sweeps through 180 degrees and then positions the pointer at 90 degrees (typically right in the middle of the "WED" day).
 
 
 ## Robot Arms
