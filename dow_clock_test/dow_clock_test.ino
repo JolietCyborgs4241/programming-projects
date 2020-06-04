@@ -9,14 +9,19 @@
 //                        as the button is pressed
 
 
+
+//  VERSION 2 - uses integral LED on pin 13 rather than a seperate LED like version 1
+
+
+
 #include <Servo.h>
 
 #define SERVO_PIN           9       // needs to be on a PWM-capable pin
-#define LED_PIN             13       // can be mostly any pin but we'll use the standard on-board LED
+#define LED_PIN             13      // can be mostly any pin but we'll use the standard on-board LED
 #define BUTTON_PIN          3       // external interrupts have to be on 2 or 3 on the Nano because of the ATmega328 limitations
                                     // different on differnt processors (some can use any digital pin)
                                     
-#define DEBOUNCE_MILLISECS  100     // ignore switch pushes within this number of milliseconds f each other
+#define DEBOUNCE_MILLISECS  150     // ignore switch pushes within this number of milliseconds of each other
 
 
 Servo DowServo;
