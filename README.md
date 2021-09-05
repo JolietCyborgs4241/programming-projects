@@ -32,6 +32,6 @@ Still being fabricated - planned to be controlled by two 4 position joysticks (t
 
 ## Assisted Java App Template
 
-A template for creating applications in Java with increased abstraction. This template allows programmers to easily create applications with code that consists of anything ranging from variables, to logic statements and operators, to loops, and to functions; without the need of any further kind of object-oriented programming needed. The goal of this template is to enable and encourage programmers to continuously exercise their understanding of Java before moving onto more advanced concepts. 
+A template for creating applications in Java with increased abstraction. This template allows programmers to easily create applications with code that consists of anything ranging from variables, to logic statements and operators, to loops, and to functions; without any further kind of object-oriented programming needed. The goal of this template is to enable and encourage programmers to continuously exercise their understanding of Java before moving onto more advanced concepts. 
 
 The template has programmers write their code in the appContainer.java file, where appContainer.java extends app.java so everything needed for a Java application is inherited via superclass methods that can simply be treated as "built-in" functions. 
