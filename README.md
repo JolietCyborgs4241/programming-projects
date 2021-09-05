@@ -29,3 +29,9 @@ A much more complicated 6-axis arm using stepper motors at each joint.  Availabl
 https://www.thingiverse.com/thing:3116728.
 
 Still being fabricated - planned to be controlled by two 4 position joysticks (turn, reach, height, and claw) using all 6 joints to in a coordinated manner to support making the arm move in only one directions at a time (when you reach forward or back, the robot will coordinate with the among the movable joints to maintain the same height for example).
+
+## Assisted Java App Template
+
+A template for creating applications in Java with increased abstraction. This template allows programmers to easily create applications with code that consists of anything ranging from variables, to logic statements and operators, to loops, and to functions; without any further kind of object-oriented programming needed. The goal of this template is to enable and encourage programmers to continuously exercise their understanding of Java before moving onto more advanced concepts. 
+
+The template has programmers write their code in the appContainer.java file, where appContainer.java extends app.java so everything needed for a Java application is inherited via superclass methods that can simply be treated as "built-in" functions. 
