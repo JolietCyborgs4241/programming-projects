@@ -7,17 +7,17 @@ public class userInput implements KeyListener
     private int key_pressed = 0;
     private int key_released = 0; 
 
-    public KeyListener getKeyListener()
+    protected KeyListener getKeyListener()
     {
         return this; 
     }
 
-    public int getKeyPressed()
+    protected int getKeyPressed()
     {
         return key_pressed;
     }
     
-    public int getKeyReleased()
+    protected int getKeyReleased()
     {
         return key_released;
     }

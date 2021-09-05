@@ -17,6 +17,26 @@ public class app extends JFrame
         super.addKeyListener(input.getKeyListener());
     }
 
+    public void createSprite(String sprite_name, String file_name)
+    {
+        window.createSpriteObject(sprite_name, file_name);
+    }
+
+    public void deleteSprite(String sprite_name)
+    {
+        window.deleteSpriteObject(sprite_name);
+    }
+
+    public void toggleSpriteVisibility(String sprite_name, boolean visible)
+    {
+        window.toggleSpriteObjectVisibility(sprite_name, visible);
+    }
+
+    public void displaySprite(String sprite_name, int x, int y)
+    {
+        window.displaySpriteObj(sprite_name, x, y);
+    }
+
     public int getKeyPressed()
     {
         return input.getKeyPressed();
