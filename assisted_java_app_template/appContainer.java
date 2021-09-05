@@ -1,8 +1,8 @@
 import lower_level.app;
 
 /* 
-    This is where your app should be created. ALl files relavent to your app go in the "higher_level" folder, 
-    with any images going into the "sprites" folder. 
+    This is where your app should be created. ALl code relavent to your app goes in this file, and any
+    images for sprites should be put into the "sprites" folder. 
 
     When programming, there will always be a main() function; it's what is called(ran) by the operating system 
     so your computer knows where to start in terms of executing your code. However, this time you will be 
