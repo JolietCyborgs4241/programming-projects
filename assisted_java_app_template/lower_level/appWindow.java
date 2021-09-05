@@ -9,9 +9,9 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*; 
 
-public class app_window extends JPanel
+public class appWindow extends JPanel
 {
-    public app_window()
+    public appWindow()
     {
 
     }
@@ -42,7 +42,7 @@ public class app_window extends JPanel
 
     private void displayGraphics(Graphics graphics)
     {
-        
+
     }
 
 }

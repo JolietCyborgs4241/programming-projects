@@ -1,6 +1,6 @@
 public class Main 
 {
-    private static app_container container = new app_container(); 
+    private static appContainer container = new appContainer(); 
 
     public static void main(String[] args)
     {
