@@ -17,6 +17,15 @@ public class app extends JFrame
         super.addKeyListener(input.getKeyListener());
     }
 
+    public void sleep(int millis)
+    {
+        try
+        {
+            Thread.sleep(millis);
+        }
+        catch(InterruptedException e){}
+    }
+
     public void createSprite(String sprite_name, String file_name)
     {
         window.createSpriteObject(sprite_name, file_name);
@@ -32,19 +41,19 @@ public class app extends JFrame
         window.toggleSpriteObjectVisibility(sprite_name, visible);
     }
 
-    public void displaySprite(String sprite_name, int x, int y)
+    public void setSpritePose(String sprite_name, int x, int y)
     {
-        window.displaySpriteObj(sprite_name, x, y);
+        window.setSpriteObjPose(sprite_name, x, y);
     }
 
-    public int getKeyPressed()
+    public int getCurrentKeyPressed()
     {
-        return input.getKeyPressed();
+        return input.getCurrentKeyPressed();
     }
 
-    public int getKeyReleased()
+    public int getLastKeyReleased()
     {
-        return input.getKeyReleased(); 
+        return input.getLastKeyReleased(); 
     }
    
 }

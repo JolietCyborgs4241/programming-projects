@@ -12,12 +12,12 @@ public class userInput implements KeyListener
         return this; 
     }
 
-    protected int getKeyPressed()
+    protected int getCurrentKeyPressed()
     {
         return key_pressed;
     }
     
-    protected int getKeyReleased()
+    protected int getLastKeyReleased()
     {
         return key_released;
     }
@@ -25,13 +25,23 @@ public class userInput implements KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
-        key_pressed = (char)e.getKeyCode();
+        key_pressed = e.getKeyCode();
+
+        if(e.getKeyCode() == key_released)
+        {
+            key_released = 0;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) 
     {
-        key_released = (char)e.getKeyCode();
+        key_released = e.getKeyCode();
+        
+        if(e.getKeyCode() == key_pressed)
+        {
+            key_pressed = 0; 
+        }
     }
 
     @Override

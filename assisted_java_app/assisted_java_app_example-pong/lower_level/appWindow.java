@@ -67,13 +67,14 @@ public class appWindow extends JPanel
         }
     }
 
-    protected void displaySpriteObj(String sprite_name, int x, int y)
-    {
+    protected void setSpriteObjPose(String sprite_name, int x, int y)
+    { 
         for(int i = 0; i < sprites.size(); i++)
         {
             if(sprites.get(i).getSpriteName() == sprite_name)
             {
                 sprites.get(i).setSpriteCoords(x, y);
+               
             }
         }
     }
