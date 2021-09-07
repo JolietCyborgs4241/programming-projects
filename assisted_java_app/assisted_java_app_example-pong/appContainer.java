@@ -30,8 +30,13 @@ import lower_level.app;
     
 
 // All code should be written in here:
-public class appContainer extends app 
+public class appContainer extends app                   
 { 
+    // NOTE: This attempt at recreating pong works, but that's all it does. It might feel like that this looks overly complicated, and honestly, it is. 
+    // There are many other ways to go about creating the game, and our goal is not only to make it work, but also make it do so with as little code as possible. 
+    // (A usual goal when programming) Lastly, regarding this example's flaws, there are better ways to do things, but some of those "better ways" involve more advanced
+    // concepts that we'll eventually get to. Maybe we can apply those changes once we get to them as a way to show why things like classes are so useful (compared to this 
+    // file's endless "if" statements and so on)
     public appContainer()
     {
         super();
@@ -91,7 +96,7 @@ public class appContainer extends app
             controller_1 = getControllerStatus(controller_1, 'W', 'S', ' ');
             controller_2 = getControllerStatus(controller_2, 'I', 'K', ' ');
 
-            if(controller_1 == 'W' && controller_1_y > controller_min_y)
+            if(controller_1 == 'W' && controller_1_y > controller_min_y) // move the 1st contoller up/down in a given range
             {
                 controller_1_y = controller_1_y - controller_velo_y;
             }
@@ -100,7 +105,7 @@ public class appContainer extends app
                 controller_1_y = controller_1_y + controller_velo_y;
             }
 
-            if(controller_2 == 'I' && controller_2_y > controller_min_y)
+            if(controller_2 == 'I' && controller_2_y > controller_min_y) // move the 2nd controller up/down in a given range
             {
                 controller_2_y = controller_2_y - controller_velo_y;
             }
@@ -111,27 +116,29 @@ public class appContainer extends app
 
             if(ball_x <= controller_1_x + controller_length_x 
             && controller_1_y < (ball_y + (ball_diameter/2)) && (controller_1_y + controller_length_y) > ball_y 
-            && (controller_1_x - ball_x) < 5)
+            && (controller_1_x - ball_x) < 5) // change the ball's horizontal velocity given where the 1st controlled paddle is (left side of the screen)
             {
                 ball_velo_x = ball_velo_x * -1;
                 ball_velo_y = -(ball_velo_y + getRandomAccel(ball_min_accel, ball_max_accel));
             }
             
             if(ball_x >= 682 && controller_2_y < (ball_y + (ball_diameter/2)) && (controller_2_y + controller_length_y) > ball_y 
-            && (ball_x - controller_2_x + ball_diameter) < 5)
+            && (ball_x - controller_2_x + ball_diameter) < 5) // change the ball's horizontal velocity given where the 2nd controlled paddle is (right side of the screen)
             {
                 ball_velo_x = ball_velo_x * -1; 
                 ball_velo_y = ball_velo_y + getRandomAccel(ball_min_accel, ball_max_accel);
             }
 
-            if(ball_y < ball_min_y || ball_y > ball_max_y)
+            if(ball_y < ball_min_y || ball_y > ball_max_y) // Allow the ball to bounce off the top/bottom of the screen (change the ball's vertical velocity)
             {
                 ball_velo_y = ball_velo_y * -1;
             }
 
+            // Move the ball given its current position and its velocity (change its coordinates)
             ball_x = ball_x + ball_velo_x; 
             ball_y = ball_y + ball_velo_y;
-
+            
+            // Update the positions of the sprites on screen depending on their coordinates
             setSpritePose("controller_1", controller_1_x, controller_1_y);
             setSpritePose("controller_2", controller_2_x, controller_2_y);
             setSpritePose("ball", ball_x, ball_y); 
