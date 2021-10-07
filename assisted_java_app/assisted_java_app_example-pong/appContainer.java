@@ -72,13 +72,13 @@ public class appContainer extends app
     int ball_diameter = 50; 
 
     char controller_1 = ' ', controller_2 = ' '; 
-    int controller_1_x = 25, controller_2_x = 732;
+    int controller_1_x = 25, controller_2_x = 1382;
     int controller_1_y = 156, controller_2_y = 156;
     int controller_velo_y = 2; 
     
     int ball_x = 375, ball_y = 325;
     int ball_velo_x = -3, ball_velo_y = 1; 
-    int ball_min_accel = 1, ball_max_accel = 2;  
+    int ball_min_accel = 0, ball_max_accel = 2;  
 
     int controller_min_y = 0, controller_max_y = 650 - controller_length_y;
     int ball_min_y = 0, ball_max_y = 650;  
@@ -112,7 +112,7 @@ public class appContainer extends app
             else if(controller_2 == 'K' && controller_2_y < controller_max_y)
             {
                 controller_2_y = controller_2_y + controller_velo_y;
-            }
+            }  
 
             if(ball_x <= controller_1_x + controller_length_x 
             && controller_1_y < (ball_y + (ball_diameter/2)) && (controller_1_y + controller_length_y) > ball_y 
@@ -122,7 +122,7 @@ public class appContainer extends app
                 ball_velo_y = -(ball_velo_y + getRandomAccel(ball_min_accel, ball_max_accel));
             }
             
-            if(ball_x >= 682 && controller_2_y < (ball_y + (ball_diameter/2)) && (controller_2_y + controller_length_y) > ball_y 
+            if(ball_x >= controller_2_x - ball_diameter && controller_2_y < (ball_y + (ball_diameter/2)) && (controller_2_y + controller_length_y) > ball_y 
             && (ball_x - controller_2_x + ball_diameter) < 5) // change the ball's horizontal velocity given where the 2nd controlled paddle is (right side of the screen)
             {
                 ball_velo_x = ball_velo_x * -1; 
