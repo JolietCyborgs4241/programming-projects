@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Random;
+
 import lower_level.app;
 
 /* 
@@ -37,8 +40,85 @@ public class appContainer extends app
         super();
     }
 
+    String star = "star";
+    String star_img = "star.png"; 
+    int star_grid_id = 2;
+
+    String circle = "circle"; 
+    String circle_img = "circle.png";
+    int circle_grid_id = 1;
+    
+    LinkedList<String> squares = new LinkedList<String>(); 
+    String square_img = "square.png";
+    int square_grid_id = 0; 
+
+    int grid_row = 5;
+    int grid_col = 5; 
+    int[][] grid = 
+    {
+        {0, 0, 2, 0, 0},
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0}
+    };
+
+    void printGrid()
+    {
+        int square_length = 100; 
+        int horizontal_dis = 50;
+        int vertical_dis = 50; 
+
+        for(int current_row = 0; current_row < grid_row; current_row++)
+        {
+            for(int current_col = 0; current_col < grid_col; current_col++)
+            {
+                String sprite_name = "";
+
+                if(grid[current_row][current_col] == circle_grid_id)
+                {
+                    sprite_name = circle;
+                }
+                else if(grid[current_row][current_col] == star_grid_id)
+                {
+                    sprite_name = star; 
+                }
+                else if(grid[current_row][current_col] == square_grid_id)
+                {
+                    sprite_name = new String();
+                    createSprite(sprite_name, square_img);
+                    squares.addLast(sprite_name);
+                }   
+
+                setSpritePose
+                (
+                    sprite_name, 
+                    current_col * square_length + horizontal_dis, 
+                    current_row * square_length + vertical_dis
+                );         
+            }
+        }
+    }
+
+    void deleteSquares()
+    {
+        for(int i = 0; i < squares.size(); i++)
+        {
+            deleteSprite(squares.get(i));
+            squares.clear(); 
+        }
+    }
+
     public void execute()
     {
-        
+        createSprite(star, star_img); 
+        createSprite(circle, circle_img); 
+
+        while(true)
+        {
+            printGrid();
+            sleep(250);
+            deleteSquares();
+        }
     }
 }

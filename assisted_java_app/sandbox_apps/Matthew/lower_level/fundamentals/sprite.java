@@ -9,7 +9,7 @@ public class sprite
     private final String SPRITE_DIR;
     private final String SPRITE_BASE_DIR = "sprites/";
     private final String SPRITE_NAME; 
-    private coordinates sprite_coords = new coordinates(0, 0); 
+    private coordinates sprite_coords = new coordinates(-250, -250); 
     private BufferedImage sprite_b_image = null;
     private boolean visible = true; 
 
