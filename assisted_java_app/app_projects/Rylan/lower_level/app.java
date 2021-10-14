@@ -41,9 +41,9 @@ public class app extends JFrame
         window.toggleSpriteObjectVisibility(sprite_name, visible);
     }
 
-    public void setSpritePose(String sprite_name, int x, int y)
+    public void setSpritePose(String sprite_name, int x, int y, int degrees)
     {
-        window.setSpriteObjPose(sprite_name, x, y);
+        window.setSpriteObjPose(sprite_name, x, y, degrees);
     }
 
     public int getCurrentKeyPressed()

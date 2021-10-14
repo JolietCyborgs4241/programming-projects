@@ -9,7 +9,7 @@ public class sprite
     private final String SPRITE_DIR;
     private final String SPRITE_BASE_DIR = "sprites/";
     private final String SPRITE_NAME; 
-    private coordinates sprite_coords = new coordinates(-250, -250); 
+    private coordinates sprite_coords = new coordinates(0, 0, 0); 
     private BufferedImage sprite_b_image = null;
     private boolean visible = true; 
 
@@ -33,10 +33,11 @@ public class sprite
         }
     }
 
-    public void setSpriteCoords(int x, int y)
+    public void setSpriteCoords(int x, int y, int degrees)
     {
         this.sprite_coords.x = x;
         this.sprite_coords.y = y; 
+        this.sprite_coords.radians = (degrees * Math.PI) / 180; 
     }
 
     public void setVisibilityStatus(boolean visible)

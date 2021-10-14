@@ -34,13 +34,22 @@ public class appWindow extends JPanel
 
     private void displayGraphics(Graphics graphics)
     {
+        Graphics2D graphics_2d = (Graphics2D)graphics; 
+
         for(int i = 0; i < sprites.size(); i++)
         {
             sprite current_sprite = sprites.get(i);
 
             if(current_sprite.getVisibilityStatus() == true)
             {
-                graphics.drawImage
+                graphics_2d.rotate
+                (
+                    current_sprite.getSpriteCoords().radians, 
+                    current_sprite.getSpriteCoords().x + current_sprite.getSpriteBufferedImage().getWidth() / 2, 
+                    current_sprite.getSpriteCoords().y + current_sprite.getSpriteBufferedImage().getHeight() / 2
+                );
+
+                graphics_2d.drawImage
                 (
                     current_sprite.getSpriteBufferedImage(), 
                     current_sprite.getSpriteCoords().x,
@@ -67,13 +76,13 @@ public class appWindow extends JPanel
         }
     }
 
-    protected void setSpriteObjPose(String sprite_name, int x, int y)
+    protected void setSpriteObjPose(String sprite_name, int x, int y, int degrees)
     { 
         for(int i = 0; i < sprites.size(); i++)
         {
             if(sprites.get(i).getSpriteName() == sprite_name)
             {
-                sprites.get(i).setSpriteCoords(x, y);
+                sprites.get(i).setSpriteCoords(x, y, degrees);
                
             }
         }

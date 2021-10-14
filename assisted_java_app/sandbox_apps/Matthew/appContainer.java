@@ -24,6 +24,13 @@ public class appContainer extends app
     
     public void execute()
     {
-        
+    	int deg = 0;
+        createSprite("obj", "paddle.png");
+        while(true)
+        {
+        	setSpritePose("obj", 100, 100, deg);
+        	deg++;
+        	sleep(3);
+        }
     }
 }
