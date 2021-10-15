@@ -50,8 +50,24 @@ public class appContainer extends app
     {   
         setup();
 
+        createSprite("bird", "bird_1.png"); int i = 0;
+
         while(true)
         {
+            if(i < 125)
+            {
+                setSpriteImage("bird", "bird_1.png");
+            }
+            else if(i >= 125 && i < 250)
+            {
+                setSpriteImage("bird", "bird_2.png");
+            }
+            else
+            {
+                i = 0;
+            }
+            
+            setSpritePose("bird", 250, 300, 0);
             setSpritePose(foreground_1_id, camera_x - WINDOW_WIDTH, 0, 0);
             setSpritePose(foreground_2_id, camera_x, 0, 0);
 
@@ -64,6 +80,7 @@ public class appContainer extends app
                 camera_x = WINDOW_WIDTH;
             }
 
+            i++;
             sleep(8);
         }
     }
