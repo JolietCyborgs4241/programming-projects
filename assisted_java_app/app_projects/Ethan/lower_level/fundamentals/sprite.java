@@ -6,30 +6,30 @@ import java.awt.image.*;
 
 public class sprite 
 {
-    private final String SPRITE_DIR;
     private final String SPRITE_BASE_DIR = "sprites/";
     private final String SPRITE_NAME; 
+    private String sprite_dir = "";
     private coordinates sprite_coords = new coordinates(0, 0, 0); 
     private BufferedImage sprite_b_image = null;
     private boolean visible = true; 
 
     public sprite(String sprite_name, String file_name)
     {
-        SPRITE_DIR = SPRITE_BASE_DIR + file_name; 
         SPRITE_NAME = sprite_name;
-        sprite_b_image = getSpriteImage(SPRITE_BASE_DIR + file_name);  
+        sprite_dir = SPRITE_BASE_DIR + file_name; 
+        setSpriteImage(file_name);  
     }
 
-    private BufferedImage getSpriteImage(String sprite_dir)
+    public void setSpriteImage(String file_name)
     {   
         try
         {
-            return ImageIO.read(new File(sprite_dir));
+            sprite_dir = SPRITE_BASE_DIR + file_name;
+            sprite_b_image = ImageIO.read(new File(sprite_dir));
         }
         catch(IOException e) 
         {
             System.err.println("sprite.java: Caught exeception! Could not find a sprite's image! \n");
-            return null;
         }
     }
 
@@ -44,6 +44,7 @@ public class sprite
     {
         this.visible = visible; 
     }
+
     public boolean getVisibilityStatus()
     {
         return visible; 
@@ -51,7 +52,7 @@ public class sprite
 
     public String getSpriteDir()
     {
-        return SPRITE_DIR; 
+        return sprite_dir; 
     }
 
     public String getSpriteName()

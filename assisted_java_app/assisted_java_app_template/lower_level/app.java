@@ -36,6 +36,11 @@ public class app extends JFrame
         window.deleteSpriteObject(sprite_name);
     }
 
+    public void setSpriteImage(String sprite_name, String file_name)
+    {
+        window.setSpriteObjectImage(sprite_name, file_name);
+    }
+
     public void toggleSpriteVisibility(String sprite_name, boolean visible)
     {
         window.toggleSpriteObjectVisibility(sprite_name, visible);

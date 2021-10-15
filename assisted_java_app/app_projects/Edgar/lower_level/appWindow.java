@@ -65,6 +65,17 @@ public class appWindow extends JPanel
         sprites.addLast(new sprite(sprite_name, file_name));
     }
 
+    protected void setSpriteObjectImage(String sprite_name, String file_name)
+    {
+        for(int i = 0; i < sprites.size(); i++)
+        {
+            if(sprites.get(i).getSpriteName() == sprite_name)
+            {
+                sprites.get(i).setSpriteImage(file_name);
+            }
+        }
+    }
+
     protected void deleteSpriteObject(String sprite_name)
     {
         for(int i = 0; i < sprites.size(); i ++)
