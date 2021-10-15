@@ -24,6 +24,7 @@ public class appContainer extends app
     
     public void execute()
     {
-    	
+    	createSprite("background", "background.png");
+        setSpritePose("background", 0, 0, 0);
     }
 }
