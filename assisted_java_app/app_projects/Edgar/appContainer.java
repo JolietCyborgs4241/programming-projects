@@ -52,13 +52,11 @@ public class appContainer extends app
         int paddle2y = 100;
         int x = 0;
         
-        while (x < 200) {
-        	setSpritePose("ball", x, 300, 0);
-        	x++;
-        	sleep(5);
-        	
+       
         	while (true) 
         	{
+        		 
+        		
         		setSpritePose("paddle_1", paddle1x, paddle1y, 0);
         			
         		if(getCurrentKeyPressed() == 'A') 
@@ -83,10 +81,14 @@ public class appContainer extends app
         		}
         		sleep(2);
         	
-        	
-        	
+        		while (x < 700) {
+        	    setSpritePose("ball", x, 275, 0);
+        	    x++;
+        	    sleep(5);
+        	   }
+        	   
         	}
         	
-        }
+       
     }
 }
