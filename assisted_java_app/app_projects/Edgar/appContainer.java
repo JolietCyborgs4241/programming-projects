@@ -42,34 +42,47 @@ public class appContainer extends app
     	createSprite("ball", "ball.png");
         setSpritePose("ball", 350, 300, 0);
         createSprite("paddle_1", "paddle.png"); 
-        setSpritePose("paddle_1", 100, 200);    
+        setSpritePose("paddle_1", 100, 200, 0);    
         createSprite("paddle_2", "paddle.png");
-        setSpritePose("paddle_2", 600, 200 );   
+        setSpritePose("paddle_2", 600, 200, 0 );
         
+        int paddle1x = 0;
+        int paddle1y = 100;
+        int paddle2x = 750;
+        int paddle2y = 100;
         int x = 0;
+        
         while (x < 200) {
-        	setSpritePose("ball", x, 300);
+        	setSpritePose("ball", x, 300, 0);
         	x++;
-        	sleep(10);
-        	int y = 100;
+        	sleep(5);
+        	
         	while (true) 
         	{
-        		setSpritePose("paddle_1", x, y);
+        		setSpritePose("paddle_1", paddle1x, paddle1y, 0);
         			
         		if(getCurrentKeyPressed() == 'A') 
         		{
-        			y++;
+        			paddle1y++;
         		}
         		else if(getCurrentKeyPressed() == 'D') 
         		{
-        			y--;
+        			paddle1y--;
         		}	
-        		sleep(5);
+        		sleep(2);
+        	
+        		setSpritePose("paddle_2", paddle2x, paddle2y, 0);
         		
-        	while (true) 
-        	{
-        			
-        	}
+        		if(getCurrentKeyPressed() == 'J') 
+        		{
+        			paddle2y++;
+        		}
+        		else if(getCurrentKeyPressed() == 'L') 
+        		{
+        			paddle2y--;
+        		}
+        		sleep(2);
+        	
         	
         	
         	}
