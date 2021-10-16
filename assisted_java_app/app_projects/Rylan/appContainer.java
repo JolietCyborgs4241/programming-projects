@@ -36,9 +36,59 @@ public class appContainer extends app
     {
         super();
     }
+ String pencil = "ball"; 
+    
+    int refresh_millis = 5; 
+    int y = 0;
+    int x = 0;
+    int z = 0;
+    
+    
+    void setup()
+    {
+    	createSprite(pencil, "Pencil.png");
+    	setSpritePose(pencil, 0 , 0, 0);
+    }
 
     public void execute()
     {
         
+        setup(); // setting up program
+        
+        while(true)
+        {
+        	// loops as long as program is running
+        	
+        	setSpritePose(pencil, x , y, 0);
+        	
+        	if(getCurrentKeyPressed() == 'S')
+        	{
+        		y++;
+        	}
+        	else if(getCurrentKeyPressed() == 'D')
+        	{
+        		x++;
+        	}
+        	else if(getCurrentKeyPressed() == 'W')
+        	{
+        		y--;
+        	}
+        	else if(getCurrentKeyPressed() == 'A')
+        	{
+        		x--;
+        	}
+        	
+        	if(getCurrentKeyPressed() == 'K')
+        	{
+        		toggleSpriteVisibility("draw", true);
+          	}
+        	else if(getCurrentKeyPressed() == 'L')
+        	{
+        		toggleSpriteVisibility("draw", false);
+        	}
+        	
+        	sleep(refresh_millis);
+        }
+            
     }
 }
