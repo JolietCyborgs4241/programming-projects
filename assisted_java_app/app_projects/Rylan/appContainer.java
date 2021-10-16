@@ -1,4 +1,5 @@
 import lower_level.app;
+import java.util.LinkedList;
 
 /* 
     This is where your app should be created. All code relavent to your app goes in this file, and any
@@ -43,11 +44,36 @@ public class appContainer extends app
     int x = 0;
     int z = 0;
     
+    LinkedList<String> sprite_names = new LinkedList<String>();
+    
     
     void setup()
     {
     	createSprite(pencil, "Pencil.png");
     	setSpritePose(pencil, 0 , 0, 0);
+    }
+    
+    void clearSprites()
+    {
+    	for(int i = 0; i < sprite_names.size(); i++) 
+    	{
+    		deleteSprite(sprite_names.get(i));
+    	}
+    	
+    	sprite_names.clear();
+    }
+    
+    void generateSprites(String file_name, int no_sprites)
+    {
+    	for(int i = 0; i < no_sprites; i++)
+    	{
+    		String sprite_name = new String(); 
+    		createSprite(sprite_name, file_name);
+    		setSpritePose(sprite_name, 100 * i, 200, 0);
+    		sprite_names.addLast(sprite_name);
+    	}
+    	
+    	
     }
 
     public void execute()
@@ -58,6 +84,8 @@ public class appContainer extends app
         while(true)
         {
         	// loops as long as program is running
+        	
+        	System.out.println((char)getCurrentKeyPressed());
         	
         	setSpritePose(pencil, x , y, 0);
         	
@@ -80,15 +108,10 @@ public class appContainer extends app
         	
         	if(getCurrentKeyPressed() == 'K')
         	{
-        		toggleSpriteVisibility("draw", true);
-          	}
-        	else if(getCurrentKeyPressed() == 'L')
-        	{
-        		toggleSpriteVisibility("draw", false);
+        		
         	}
-        	
         	sleep(refresh_millis);
         }
-            
+           
     }
 }
