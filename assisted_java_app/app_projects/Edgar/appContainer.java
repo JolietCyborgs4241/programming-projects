@@ -39,6 +39,41 @@ public class appContainer extends app
 
     public void execute()
     {
+    	createSprite("ball", "ball.png");
+        setSpritePose("ball", 350, 300, 0);
+        createSprite("paddle_1", "paddle.png"); 
+        setSpritePose("paddle_1", 100, 200);    
+        createSprite("paddle_2", "paddle.png");
+        setSpritePose("paddle_2", 600, 200 );   
         
+        int x = 0;
+        while (x < 200) {
+        	setSpritePose("ball", x, 300);
+        	x++;
+        	sleep(10);
+        	int y = 100;
+        	while (true) 
+        	{
+        		setSpritePose("paddle_1", x, y);
+        			
+        		if(getCurrentKeyPressed() == 'A') 
+        		{
+        			y++;
+        		}
+        		else if(getCurrentKeyPressed() == 'D') 
+        		{
+        			y--;
+        		}	
+        		sleep(5);
+        		
+        	while (true) 
+        	{
+        			
+        	}
+        	
+        	
+        	}
+        	
+        }
     }
 }
