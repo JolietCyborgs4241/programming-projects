@@ -9,19 +9,40 @@ import java.util.LinkedList;
 public class appWindow extends JPanel
 {
     private LinkedList<sprite> sprites = new LinkedList<sprite>();
+    private Graphics graphics = null; 
+    private Color window_background_color = constants.DEFAULT_BACKGROUND_COLOR;
+
+    @FunctionalInterface
+    private static interface cycle_sprite_behavior
+    {
+        int execeute(int i);
+    };
+
+    private int cycleSprites(cycle_sprite_behavior behavior)
+    {
+        int data = 0;
+
+        for(int i = 0; i < sprites.size(); i++)
+        {
+            data = behavior.execeute(i);
+        }
+
+        return data;
+    }
 
     @Override
     protected void paintComponent(Graphics graphics) 
     {
         graphics = getPreparedGraphics(graphics);
-        displayGraphics(graphics);
+        displaySpriteGraphics(graphics);
+        this.graphics = graphics; 
     }
 
     private Graphics getPreparedGraphics(Graphics graphics)
     {        
         super.paintComponent(graphics);
         super.repaint();
-        super.setBackground(constants.DEFAULT_BACKGROUND_COLOR);
+        super.setBackground(window_background_color);
 
         try
         {
@@ -32,32 +53,79 @@ public class appWindow extends JPanel
         return graphics;
     }
 
-    private void displayGraphics(Graphics graphics)
+    private void displaySpriteGraphics(Graphics graphics)
     {
         Graphics2D graphics_2d = (Graphics2D)graphics; 
 
-        for(int i = 0; i < sprites.size(); i++)
-        {
-            sprite current_sprite = sprites.get(i);
-
-            if(current_sprite.getVisibilityStatus() == true)
+        cycleSprites
+        (
+            (int i) ->
             {
-                graphics_2d.rotate
-                (
-                    current_sprite.getSpriteCoords().radians, 
-                    current_sprite.getSpriteCoords().x + current_sprite.getSpriteBufferedImage().getWidth() / 2, 
-                    current_sprite.getSpriteCoords().y + current_sprite.getSpriteBufferedImage().getHeight() / 2
-                );
+                sprite current_sprite = sprites.get(i);
 
-                graphics_2d.drawImage
-                (
-                    current_sprite.getSpriteBufferedImage(), 
-                    current_sprite.getSpriteCoords().x,
-                    current_sprite.getSpriteCoords().y,
-                    null
-                );
+                if(current_sprite.getVisibilityStatus() == true)
+                {
+                    graphics_2d.rotate
+                    (
+                        current_sprite.getSpriteCoords().radians, 
+                        current_sprite.getSpriteCoords().x + current_sprite.getSpriteBufferedImage().getWidth() / 2, 
+                        current_sprite.getSpriteCoords().y + current_sprite.getSpriteBufferedImage().getHeight() / 2
+                    );
+
+                    graphics_2d.drawImage
+                    (
+                        current_sprite.getSpriteBufferedImage(), 
+                        current_sprite.getSpriteCoords().x,
+                        current_sprite.getSpriteCoords().y,
+                        null
+                    );
+                }
+                
+                return 0;
             }
-        }
+        );
+    }
+
+    protected void drawLine(Color color, int x1, int y1, int x2, int y2)
+    {
+        graphics.setColor(color);
+        graphics.drawLine(x1, y1, x2, y2);
+    }
+
+    protected void drawRectangle(Color color, int x, int y, int width, int height)
+    {
+        graphics.setColor(color);
+        graphics.drawRect(x, y, width, height);
+    }
+
+    protected void drawRoundedRectangle(Color color, int x, int y, int width, int height, int arc_width, int arc_height)
+    {
+        graphics.setColor(color);
+        graphics.drawRoundRect(x, y, width, height, arc_width, arc_height);
+    }
+
+    protected void drawOval(Color color, int x, int y, int width, int height)
+    {
+        graphics.setColor(color);
+        graphics.drawOval(x, y, width, height);
+    }
+
+    protected void drawArc(Color color, int x, int y, int width, int height, int start_angle, int arc_angle)
+    {
+        graphics.setColor(color);
+        graphics.drawArc(x, y, width, height, start_angle, arc_angle);
+    }
+
+    protected void drawPolygon(Color color, int[] x_points, int[] y_points, int amount_of_vertices)
+    {
+        graphics.setColor(color);
+        graphics.drawPolygon(x_points, y_points, amount_of_vertices);
+    }
+
+    protected void drawText(Color color, int x, int y, String text)
+    {
+        graphics.setColor(color);
+        graphics.drawString(text, x, y);
     }
 
     protected void createSpriteObject(String sprite_name, String file_name)
@@ -76,37 +144,88 @@ public class appWindow extends JPanel
         }
     }
 
+    protected int getSpriteObjectImageWidth(String sprite_name)
+    {
+        return cycleSprites
+        (
+            (int i) ->
+            {
+                if(sprites.get(i).getSpriteName() == sprite_name)
+                {
+                    return sprites.get(i).getSpriteBufferedImage().getWidth();
+                }
+
+                return 0;
+            }
+        );
+    }
+
+    protected int getSpriteObjectImageHeight(String sprite_name)
+    {
+        return cycleSprites
+        (
+            (int i) ->
+            {
+                if(sprites.get(i).getSpriteName() == sprite_name)
+                {
+                    return sprites.get(i).getSpriteBufferedImage().getHeight();
+                }
+
+                return 0;
+            }
+        );
+    }
+
     protected void deleteSpriteObject(String sprite_name)
     {
-        for(int i = 0; i < sprites.size(); i ++)
-        {
-            if(sprites.get(i).getSpriteName() == sprite_name)
+        cycleSprites
+        (
+            (int i) ->
             {
-                sprites.remove(i); 
+                if(sprites.get(i).getSpriteName() == sprite_name)
+                {
+                    sprites.remove(i); 
+                }
+
+                return 0;
             }
-        }
+        );
     }
 
     protected void setSpriteObjPose(String sprite_name, int x, int y, int degrees)
     { 
-        for(int i = 0; i < sprites.size(); i++)
-        {
-            if(sprites.get(i).getSpriteName() == sprite_name)
+        cycleSprites
+        (
+            (int i) ->
             {
-                sprites.get(i).setSpriteCoords(x, y, degrees);
-               
+                if(sprites.get(i).getSpriteName() == sprite_name)
+                {
+                    sprites.get(i).setSpriteCoords(x, y, degrees);
+                }
+
+                return 0;
             }
-        }
+        );
     }
 
     protected void toggleSpriteObjectVisibility(String sprite_name, boolean visible)
     {
-        for(int i = 0; i < sprites.size(); i++)
-        {
-            if(sprites.get(i).getSpriteName() == sprite_name)
+        cycleSprites
+        (
+            (int i) ->
             {
-                sprites.get(i).setVisibilityStatus(visible);
+                if(sprites.get(i).getSpriteName() == sprite_name)
+                {
+                    sprites.get(i).setVisibilityStatus(visible);
+                }
+
+                return 0;
             }
-        }
+        );
+    }
+
+    protected void setWindowBackgroundColor(Color color)
+    {
+        window_background_color = color; 
     }
 }
