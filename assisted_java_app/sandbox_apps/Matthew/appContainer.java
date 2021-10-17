@@ -57,6 +57,8 @@ public class appContainer extends app
         createSprite(foreground_1_id, foreground_file);
         createSprite(foreground_2_id, foreground_file);
         createSprite(bird_id, bird_files[0]);
+
+        
     }
 
     private void display()
