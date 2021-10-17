@@ -1,5 +1,6 @@
 import lower_level.app;
 import lower_level.fundamentals.constants;
+import java.awt.*;
 /*  
     - createSprite(String sprite_name, String file_name) -> creates a sprite given the file name from the sprites folder.
     - deleteSprite(String sprite_name) 
@@ -56,8 +57,6 @@ public class appContainer extends app
         createSprite(foreground_1_id, foreground_file);
         createSprite(foreground_2_id, foreground_file);
         createSprite(bird_id, bird_files[0]);
-
-        
     }
 
     private void display()

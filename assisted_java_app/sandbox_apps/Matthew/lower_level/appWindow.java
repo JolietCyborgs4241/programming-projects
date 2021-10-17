@@ -1,7 +1,6 @@
 package lower_level;
 
 import javax.swing.*;
-
 import lower_level.fundamentals.constants;
 import lower_level.fundamentals.sprite;
 import java.awt.*;
