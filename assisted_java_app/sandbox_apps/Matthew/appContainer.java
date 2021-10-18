@@ -85,8 +85,15 @@ public class appContainer extends app
         
         boolean once = true; 
 
-        while(true)
+        while(!game_over)
         {   
+            bird_deg = (int)Math.toDegrees
+            (
+                Math.atan
+                (
+                    (distance_elapsed / (Math.pow(getScaledRateOfChange(camera_x_velo, DELAY_IN_MILLIS), 2))) + Math.tan(LAUNCH_DEG)
+                )
+            );
 
             if(bird_y < GND_LVL_Y - getSpriteImageHeight(bird_id))
             {
@@ -97,6 +104,9 @@ public class appContainer extends app
                 bird_y = GND_LVL_Y - getSpriteImageHeight(bird_id);
                 bird_y_velo = 0;
                 distance_elapsed = 0;
+
+                playAudioFile("hit.wav");
+                game_over = true;
             }
 
             if(getCurrentKeyPressed() == ' ' && once)
@@ -113,18 +123,10 @@ public class appContainer extends app
                 once = true; 
                 setSpriteImage(bird_id, "bird_1.png");
             }
-
-            bird_deg = (int)Math.toDegrees
-            (
-                Math.atan
-                (
-                    (distance_elapsed / (Math.pow(getScaledRateOfChange(camera_x_velo, DELAY_IN_MILLIS), 2))) + Math.tan(LAUNCH_DEG)
-                )
-            );
             
             bird_y += getScaledRateOfChange(bird_y_velo, DELAY_IN_MILLIS);
-           
-            display(); sleep(DELAY_IN_MILLIS);
+            display(); 
+            sleep(DELAY_IN_MILLIS);
         }
     }
 }
