@@ -36,13 +36,16 @@ public class appContainer extends app
 
     // execeute() runs periodically every 10 milliseconds!
     // rates are in units per second
-    final int DELAY_IN_MILLIS = 20;
+    final int DELAY_IN_MILLIS = 25;
     final int GND_LVL_Y = 547;
+    final int VERTICAL_LAUNCH_VELO = -500;
+    final int LAUNCH_DEG = -45;
     int background_x = -26, background_y = 0;
-    int bird_x = WINDOW_WIDTH / 5, bird_y = WINDOW_HEIGHT / 2; 
-    double bird_y_velo = -300;  // pxls/sec
+    int bird_x = WINDOW_WIDTH / 5, bird_y = WINDOW_HEIGHT / 2, bird_deg = 0; 
+    int distance_elapsed = 0; 
+    double bird_y_velo = VERTICAL_LAUNCH_VELO;  // pxls/sec
     double camera_x_velo = WINDOW_WIDTH; // pxls/sec
-    double accel_y = 1800; // pxls/sec^2
+    double accel_y = 1500; // pxls/sec^2
     boolean game_over = false; 
 
     private int getScaledRateOfChange(double units_per_sec, int delay_in_millis)
@@ -57,8 +60,6 @@ public class appContainer extends app
         createSprite(foreground_1_id, foreground_file);
         createSprite(foreground_2_id, foreground_file);
         createSprite(bird_id, bird_files[0]);
-
-        
     }
 
     private void display()
@@ -72,7 +73,8 @@ public class appContainer extends app
             camera_x = WINDOW_WIDTH;
         }
         
-        setSpritePose(bird_id, bird_x, bird_y, 0);
+        distance_elapsed += getScaledRateOfChange(camera_x_velo, DELAY_IN_MILLIS); 
+        setSpritePose(bird_id, bird_x, bird_y, bird_deg);
         setSpritePose(foreground_1_id, camera_x - WINDOW_WIDTH, 0, 0);
         setSpritePose(foreground_2_id, camera_x, 0, 0);
     }
@@ -85,6 +87,7 @@ public class appContainer extends app
 
         while(true)
         {   
+
             if(bird_y < GND_LVL_Y - getSpriteImageHeight(bird_id))
             {
                 bird_y_velo += getScaledRateOfChange(accel_y, DELAY_IN_MILLIS);
@@ -93,23 +96,35 @@ public class appContainer extends app
             {
                 bird_y = GND_LVL_Y - getSpriteImageHeight(bird_id);
                 bird_y_velo = 0;
+                distance_elapsed = 0;
             }
 
             if(getCurrentKeyPressed() == ' ' && once)
             {
-                bird_y_velo = -450;
                 once = false;
-                playAudioFile("gained_point.wav");
+                bird_y_velo = VERTICAL_LAUNCH_VELO;
+                bird_deg = LAUNCH_DEG; 
+                distance_elapsed = 0; 
+                playAudioFile("flap.wav");
+                setSpriteImage(bird_id, "bird_2.png");
             }
             else if(getCurrentKeyPressed() == 0)
             {
                 once = true; 
+                setSpriteImage(bird_id, "bird_1.png");
             }
 
+            bird_deg = (int)Math.toDegrees
+            (
+                Math.atan
+                (
+                    (distance_elapsed / (Math.pow(getScaledRateOfChange(camera_x_velo, DELAY_IN_MILLIS), 2))) + Math.tan(LAUNCH_DEG)
+                )
+            );
+            
             bird_y += getScaledRateOfChange(bird_y_velo, DELAY_IN_MILLIS);
-
-            display();
-            sleep(DELAY_IN_MILLIS);
+           
+            display(); sleep(DELAY_IN_MILLIS);
         }
     }
 }
