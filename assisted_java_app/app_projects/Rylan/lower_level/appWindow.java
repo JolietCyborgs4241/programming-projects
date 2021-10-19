@@ -29,13 +29,18 @@ public class appWindow extends JPanel
 
         return data;
     }
+    
+    public appWindow()
+    {
+    	
+    }
 
     @Override
     protected void paintComponent(Graphics graphics) 
     {
+    	this.graphics = graphics; 
         graphics = getPreparedGraphics(graphics);
-        displaySpriteGraphics(graphics);
-        this.graphics = graphics; 
+        displaySpriteGraphics(graphics); 
     }
 
     private Graphics getPreparedGraphics(Graphics graphics)
