@@ -23,13 +23,14 @@ public class appContainer extends app
     	createSprite(pencil, "Pencil.png");
     	setSpritePose(pencil, 0 , 0, 0);
     	setWindowBackgroundColor(Color.WHITE);
+    	playAudioFile("enter.wav");
     	   	
     }
     
     void linedraw()
     {
     	drawLine(Color.BLACK, x1, y1, x , y);
-		sleep(100);
+
     }
    
     public void execute()
@@ -93,14 +94,14 @@ public class appContainer extends app
         	{
         		x1 = x; 
         		y1 = y;
+        		playAudioFile("k.wav");
+        		sleep(200);
         	}
         	else if(getCurrentKeyPressed() == 'L')
         	{
-        		drawLine(Color.BLACK, x1, y1, x , y);
-        		x1 = x;
-        		y1 = y;
-        		sleep(100);
-        	}
+           		drawLine(Color.BLACK, x1, y1, x, y);
+           	
+          	}
         	sleep(refresh_millis);
         	
         }
