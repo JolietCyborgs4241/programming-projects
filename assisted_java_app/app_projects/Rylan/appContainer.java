@@ -66,10 +66,11 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'L')
         	{
-        		//drawLine( , x1, y1, x , y);
+        		drawLine(Color.WHITE, x1, y1, x , y);
+        		sleep(1000);
         	}
         	sleep(refresh_millis);
-        	drawRectangle(Color.WHITE, 10,10,300,300);
+        	
         }
            
     }
