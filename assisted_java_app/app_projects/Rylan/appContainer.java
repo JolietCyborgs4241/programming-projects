@@ -67,7 +67,7 @@ public class appContainer extends app
         	else if(getCurrentKeyPressed() == 'L')
         	{
         		drawLine(Color.WHITE, x1, y1, x , y);
-        		sleep(1000);
+        		sleep(100);
         	}
         	sleep(refresh_millis);
         	
