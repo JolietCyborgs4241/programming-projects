@@ -18,7 +18,12 @@ public class appContainer extends app
     
     LinkedList<String> sprite_names = new LinkedList<String>();
     
-    
+
+    void linedraw()
+    {
+    	drawLine(Color.WHITE, x1, y1, x , y);
+		sleep(100);
+    }
     void setup()
     {
     	createSprite(pencil, "Pencil.png");
@@ -67,6 +72,8 @@ public class appContainer extends app
         	else if(getCurrentKeyPressed() == 'L')
         	{
         		drawLine(Color.WHITE, x1, y1, x , y);
+        		x1 = x;
+        		y1 = y;
         		sleep(100);
         	}
         	sleep(refresh_millis);
