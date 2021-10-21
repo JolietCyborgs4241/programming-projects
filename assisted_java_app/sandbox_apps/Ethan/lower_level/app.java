@@ -64,6 +64,11 @@ public class app extends JFrame
         window.drawText(color, x, y, text);
     }
 
+    public void clearDrawings()
+    {
+        window.clearDrawings();
+    }
+
     public void createSprite(String sprite_name, String file_name)
     {
         window.createSpriteObject(sprite_name, file_name);

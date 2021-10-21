@@ -99,7 +99,7 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'L')
         	{
-        		drawLine(Color.BLACK, x1, y1, x , y);
+        		drawLine(Color.RED, x1, y1, x , y);
         		x1 = x;
         		y1 = y;
         		sleep(100);

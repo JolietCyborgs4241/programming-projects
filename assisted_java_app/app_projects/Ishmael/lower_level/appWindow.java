@@ -1,6 +1,7 @@
 package lower_level;
 
 import javax.swing.*;
+
 import lower_level.fundamentals.constants;
 import lower_level.fundamentals.sprite;
 import java.awt.*;
@@ -9,13 +10,19 @@ import java.util.LinkedList;
 public class appWindow extends JPanel
 {
     private LinkedList<sprite> sprites = new LinkedList<sprite>();
-    private Graphics graphics = null; 
     private Color window_background_color = constants.DEFAULT_BACKGROUND_COLOR;
+    private LinkedList<draw_geometry_behavior> draw_geometry_behavior = new LinkedList<draw_geometry_behavior>();
 
     @FunctionalInterface
-    private static interface cycle_sprite_behavior
+    private interface cycle_sprite_behavior
     {
-        int execeute(int i);
+        int execute(int i);
+    };
+
+    @FunctionalInterface 
+    private interface draw_geometry_behavior
+    {
+        void execute(Graphics graphics);
     };
 
     private int cycleSprites(cycle_sprite_behavior behavior)
@@ -24,7 +31,7 @@ public class appWindow extends JPanel
 
         for(int i = 0; i < sprites.size(); i++)
         {
-            data = behavior.execeute(i);
+            data = behavior.execute(i);
         }
 
         return data;
@@ -34,8 +41,7 @@ public class appWindow extends JPanel
     protected void paintComponent(Graphics graphics) 
     {
         graphics = getPreparedGraphics(graphics);
-        displaySpriteGraphics(graphics);
-        this.graphics = graphics; 
+        displaySpriteGraphics(graphics); 
     }
 
     private Graphics getPreparedGraphics(Graphics graphics)
@@ -84,48 +90,131 @@ public class appWindow extends JPanel
                 return 0;
             }
         );
+
+        for(int i = 0; i < draw_geometry_behavior.size(); i++)
+        {
+            if(draw_geometry_behavior.get(i) != null)
+            {
+                draw_geometry_behavior.get(i).execute(graphics);
+            }
+        }
     }
 
     protected void drawLine(Color color, int x1, int y1, int x2, int y2)
     {
-        graphics.setColor(color);
-        graphics.drawLine(x1, y1, x2, y2);
+        draw_geometry_behavior.addLast
+        (
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics) 
+                {
+                    graphics.setColor(color);
+                    graphics.drawLine(x1, y1, x2, y2);
+                }   
+            }
+        );
     }
 
     protected void drawRectangle(Color color, int x, int y, int width, int height)
     {
-        graphics.setColor(color);
-        graphics.drawRect(x, y, width, height);
+        draw_geometry_behavior.addLast
+        (
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics)
+                {
+                    graphics.setColor(color);
+                    graphics.drawRect(x, y, width, height);
+                }    
+            }
+        );
     }
 
     protected void drawRoundedRectangle(Color color, int x, int y, int width, int height, int arc_width, int arc_height)
     {
-        graphics.setColor(color);
-        graphics.drawRoundRect(x, y, width, height, arc_width, arc_height);
+        draw_geometry_behavior.addLast
+        (
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics)
+                {
+                    graphics.setColor(color);
+                    graphics.drawRoundRect(x, y, width, height, arc_width, arc_height);
+                }    
+            }
+        ); 
     }
 
     protected void drawOval(Color color, int x, int y, int width, int height)
     {
-        graphics.setColor(color);
-        graphics.drawOval(x, y, width, height);
+        draw_geometry_behavior.addLast
+        ( 
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics)
+                {
+                    graphics.setColor(color);
+                    graphics.drawOval(x, y, width, height);
+                }    
+            }
+        );
     }
 
     protected void drawArc(Color color, int x, int y, int width, int height, int start_angle, int arc_angle)
     {
-        graphics.setColor(color);
-        graphics.drawArc(x, y, width, height, start_angle, arc_angle);
+        draw_geometry_behavior.addLast
+        (
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics)
+                {
+                    graphics.setColor(color);
+                    graphics.drawArc(x, y, width, height, start_angle, arc_angle);
+                }    
+            }
+        );
     }
 
     protected void drawPolygon(Color color, int[] x_points, int[] y_points, int amount_of_vertices)
     {
-        graphics.setColor(color);
-        graphics.drawPolygon(x_points, y_points, amount_of_vertices);
+        draw_geometry_behavior.addLast
+        (
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics)
+                {
+                    graphics.setColor(color);
+                    graphics.drawPolygon(x_points, y_points, amount_of_vertices);
+                }    
+            }
+        );
     }
 
     protected void drawText(Color color, int x, int y, String text)
     {
-        graphics.setColor(color);
-        graphics.drawString(text, x, y);
+        draw_geometry_behavior.addLast
+        (
+            new draw_geometry_behavior()
+            {
+                @Override
+                public void execute(Graphics graphics)
+                {
+                    graphics.setColor(color);
+                    graphics.drawString(text, x, y);
+                }    
+            }
+        ); 
+    }
+
+    protected void clearDrawings()
+    {
+        draw_geometry_behavior.clear();
     }
 
     protected void createSpriteObject(String sprite_name, String file_name)
