@@ -15,6 +15,8 @@ public class appContainer extends app
     int x = 0;
     int x1 = 0;
     int y1 = 0;
+    int x2 = 0;
+    int y2 = 0;
     
     LinkedList<String> sprite_names = new LinkedList<String>();
   
@@ -33,6 +35,8 @@ public class appContainer extends app
         drawText(Color.BLACK, 5, 40, "T&I = Draw line");
         drawText(Color.BLACK, 5, 50, "Y&O = Draw rectangle");
         drawText(Color.BLACK, 5, 60, "U&P = Draw oval");
+        drawText(Color.BLACK, 5, 70, "0-5 = Change BG color");
+        drawText(Color.BLACK, 5, 80, "There is no undo button, so be careful!");
     }
     
     public void execute()
@@ -40,7 +44,8 @@ public class appContainer extends app
         setup(); 
         drawInstructions();
         while(true)
-        {   	              	
+        {   	              
+        	System.out.println((char)getCurrentKeyPressed());
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
         	{
@@ -92,6 +97,8 @@ public class appContainer extends app
         	else if(getCurrentKeyPressed() == 'T')
         	{
         		drawLine(Color.BLACK, x1, y1, x , y);
+        		x2 = x1;
+        		y2 = y1;
         		x1 = x;
         		y1 = y;
         		playAudioFile("draw.wav");
@@ -126,6 +133,12 @@ public class appContainer extends app
         	else if(getCurrentKeyPressed() == 'P')
         	{
         		drawOval(Color.WHITE, x1, y1, x - x1, y - y1);
+        		playAudioFile("draw.wav");
+        		sleep(500);
+        	}
+        	else if(getCurrentKeyPressed() == 'Z')
+        	{
+        		drawLine(Color.WHITE, x, y, x2, y2);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
