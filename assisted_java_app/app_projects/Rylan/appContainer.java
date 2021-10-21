@@ -100,9 +100,8 @@ public class appContainer extends app
         		x1 = x;
         		y1 = y;
         		sleep(100);
-        	}
+        	} 
         	sleep(refresh_millis);
-        	
         }
            
     }
