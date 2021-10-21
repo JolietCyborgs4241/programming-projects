@@ -92,7 +92,7 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'T')
         	{
-        		drawLine(Color.BLACK, x1, y1, x , y);
+        		drawLine(Color.RED, x1, y1, x , y);
         		x1 = x;
         		y1 = y;
         		playAudioFile("draw.wav");
