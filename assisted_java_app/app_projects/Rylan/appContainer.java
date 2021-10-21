@@ -8,7 +8,7 @@ public class appContainer extends app
     {
         super();
     }
- String pencil = "ball"; 
+ String pencil = "pencil"; 
     
     int refresh_millis = 5; 
     int y = 0;
@@ -23,22 +23,22 @@ public class appContainer extends app
     	createSprite(pencil, "Pencil.png");
     	setSpritePose(pencil, 0 , 0, 0);
     	setWindowBackgroundColor(Color.WHITE);
-    	playAudioFile("enter.wav");
-    	   	
+    	playAudioFile("enter.wav");	
+    }
+    void drawInstructions()
+    {
+    	drawText(Color.BLACK, 5, 10, "WASD = Move");
+        drawText(Color.BLACK, 5, 20, "E = Set drawing starting point");
+        drawText(Color.BLACK, 5, 30, "R = Clear");
+        drawText(Color.BLACK, 5, 40, "T&I = Draw line");
+        drawText(Color.BLACK, 5, 50, "Y&O = Draw rectangle");
+        drawText(Color.BLACK, 5, 60, "U&P = Draw oval");
     }
     
-    void linedraw()
-    {
-    	drawLine(Color.BLACK, x1, y1, x , y);
-
-    }
-   
     public void execute()
     {
-    
-        
         setup(); 
-       
+        drawInstructions();
         while(true)
         {   	              	
         	setSpritePose(pencil, x , y, 0);
@@ -82,7 +82,6 @@ public class appContainer extends app
         	{
         		x--;
         	}
-        	
         	if(getCurrentKeyPressed() == 'E')
         	{
         		x1 = x; 
@@ -92,25 +91,50 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'T')
         	{
-        		drawLine(Color.RED, x1, y1, x , y);
+        		drawLine(Color.BLACK, x1, y1, x , y);
         		x1 = x;
         		y1 = y;
         		playAudioFile("draw.wav");
         		sleep(500);
-        	} 
+        	}
+        	else if(getCurrentKeyPressed() == 'I')
+        	{
+        		drawLine(Color.WHITE, x1, y1, x , y);
+        		x1 = x;
+        		y1 = y;
+        		playAudioFile("draw.wav");
+        		sleep(500);
+        	}
         	else if(getCurrentKeyPressed() == 'Y')
         	{
         		drawRectangle(Color.BLACK, x1, y1, x - x1, y - y1);
+        		playAudioFile("draw.wav");
+        		sleep(500);
+        	}
+        	else if(getCurrentKeyPressed() == 'O')
+        	{
+        		drawRectangle(Color.WHITE, x1, y1, x - x1, y - y1);
+        		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	else if(getCurrentKeyPressed() == 'U')
         	{
         		drawOval(Color.BLACK, x1, y1, x - x1, y - y1);
+        		playAudioFile("draw.wav");
+        		sleep(500);
+        	}
+        	else if(getCurrentKeyPressed() == 'P')
+        	{
+        		drawOval(Color.WHITE, x1, y1, x - x1, y - y1);
+        		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	if(getCurrentKeyPressed() == 'R')
         	{
         		clearDrawings();
+        		playAudioFile("draw.wav");
+        		drawInstructions();
+        		sleep(500);
         	}
         	sleep(refresh_millis);
         }
