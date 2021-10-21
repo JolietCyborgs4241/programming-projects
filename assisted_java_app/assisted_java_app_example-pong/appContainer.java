@@ -139,9 +139,9 @@ public class appContainer extends app
             ball_y = ball_y + ball_velo_y;
             
             // Update the positions of the sprites on screen depending on their coordinates
-            setSpritePose("controller_1", controller_1_x, controller_1_y);
-            setSpritePose("controller_2", controller_2_x, controller_2_y);
-            setSpritePose("ball", ball_x, ball_y); 
+            setSpritePose("controller_1", controller_1_x, controller_1_y, 0);
+            setSpritePose("controller_2", controller_2_x, controller_2_y, 0);
+            setSpritePose("ball", ball_x, ball_y, 0); 
         }
     }
 }

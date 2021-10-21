@@ -37,8 +37,14 @@ public class appContainer extends app
         drawText(Color.BLACK, 5, 40, "T&I = Draw line");
         drawText(Color.BLACK, 5, 50, "Y&O = Draw rectangle");
         drawText(Color.BLACK, 5, 60, "U&P = Draw oval");
-        drawText(Color.BLACK, 5, 70, "0-5 = Change BG color");
+        drawText(Color.BLACK, 5, 70, "0-9 = Change BG color");
         drawText(Color.BLACK, 5, 80, "There is no undo button, so be careful!");
+     /*
+     there are other commands, i just didn't want to include them as they are too complicated
+     X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping
+     Z = draws a white line over the most recently drawn line, can act as a pseudo-undo
+     try and find the hidden command! :)
+     */
     }
     
     public void execute()
@@ -73,6 +79,22 @@ public class appContainer extends app
         	{
         		setWindowBackgroundColor(Color.BLUE);
         	}
+        	else if(getCurrentKeyPressed() == '6')
+        	{
+        		setWindowBackgroundColor(Color.MAGENTA);
+        	}
+        	else if(getCurrentKeyPressed() == '7')
+        	{
+        		setWindowBackgroundColor(Color.PINK);
+        	}
+        	else if(getCurrentKeyPressed() == '8')
+        	{
+        		setWindowBackgroundColor(Color.GRAY);
+        	}
+        	else if(getCurrentKeyPressed() == '9')
+        	{
+        		setWindowBackgroundColor(Color.LIGHT_GRAY);
+        	}
         	if(getCurrentKeyPressed() == 'S')
         	{
         		y++;
@@ -93,13 +115,10 @@ public class appContainer extends app
         	{
         		x1 = x; 
         		y1 = y;
-        		playAudioFile("k.wav");
-        		sleep(200);
-        	}
-        	else if(getCurrentKeyPressed() == 'Q')
-        	{
         		x3 = x;
         		y3 = y;
+        		playAudioFile("k.wav");
+        		sleep(200);
         	}
         	else if(getCurrentKeyPressed() == 'T')
         	{
@@ -167,6 +186,14 @@ public class appContainer extends app
         		playAudioFile("draw.wav");
         		drawInstructions();
         		sleep(500);
+        	}
+        	if(getCurrentKeyPressed() == ',')
+        	{
+        		setSpriteImage(pencil, "Mario.png");
+        	}
+        	else if(getCurrentKeyPressed() == '.')
+        	{
+        		setSpriteImage(pencil, "pencil.png");
         	}
         	sleep(refresh_millis);
         }
