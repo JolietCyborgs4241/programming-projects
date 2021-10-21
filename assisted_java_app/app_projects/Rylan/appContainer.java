@@ -40,14 +40,7 @@ public class appContainer extends app
         setup(); 
        
         while(true)
-        {      	        	
-        	        	
-        	
-        	System.out.println(x);
-        	System.out.println(y);
-        	System.out.println(x1);
-        	System.out.println(y1);
-        	
+        {   	              	
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
         	{
@@ -90,20 +83,35 @@ public class appContainer extends app
         		x--;
         	}
         	
-        	if(getCurrentKeyPressed() == 'K')
+        	if(getCurrentKeyPressed() == 'E')
         	{
         		x1 = x; 
         		y1 = y;
         		playAudioFile("k.wav");
         		sleep(200);
         	}
-        	else if(getCurrentKeyPressed() == 'L')
+        	else if(getCurrentKeyPressed() == 'T')
         	{
         		drawLine(Color.BLACK, x1, y1, x , y);
         		x1 = x;
         		y1 = y;
-        		sleep(100);
+        		playAudioFile("draw.wav");
+        		sleep(500);
         	} 
+        	else if(getCurrentKeyPressed() == 'Y')
+        	{
+        		drawRectangle(Color.BLACK, x1, y1, x - x1, y - y1);
+        		sleep(500);
+        	}
+        	else if(getCurrentKeyPressed() == 'U')
+        	{
+        		drawOval(Color.BLACK, x1, y1, x - x1, y - y1);
+        		sleep(500);
+        	}
+        	if(getCurrentKeyPressed() == 'R')
+        	{
+        		clearDrawings();
+        	}
         	sleep(refresh_millis);
         }
            
