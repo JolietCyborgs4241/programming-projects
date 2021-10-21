@@ -17,6 +17,8 @@ public class appContainer extends app
     int y1 = 0;
     int x2 = 0;
     int y2 = 0;
+    int x3 = 0;
+    int y3 = 0;
     
     LinkedList<String> sprite_names = new LinkedList<String>();
   
@@ -94,6 +96,11 @@ public class appContainer extends app
         		playAudioFile("k.wav");
         		sleep(200);
         	}
+        	else if(getCurrentKeyPressed() == 'Q')
+        	{
+        		x3 = x;
+        		y3 = y;
+        	}
         	else if(getCurrentKeyPressed() == 'T')
         	{
         		drawLine(Color.BLACK, x1, y1, x , y);
@@ -101,6 +108,18 @@ public class appContainer extends app
         		y2 = y1;
         		x1 = x;
         		y1 = y;
+        		playAudioFile("draw.wav");
+        		sleep(500);
+        	}
+        	else if(getCurrentKeyPressed() == 'X')
+        	{
+        		drawLine(Color.BLACK, x, y, x3, y3);
+        		playAudioFile("draw.wav");
+        		sleep(500);
+        	}
+        	else if(getCurrentKeyPressed() == 'C')
+        	{
+        		drawLine(Color.WHITE, x, y, x3, y3);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
