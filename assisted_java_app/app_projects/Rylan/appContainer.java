@@ -79,7 +79,6 @@ public class appContainer extends app
         drawInstructions();
         while(true)
         {   	              
-        	System.out.println((char)getCurrentKeyPressed());
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
         	{
