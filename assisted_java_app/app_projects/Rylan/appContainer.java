@@ -19,6 +19,8 @@ public class appContainer extends app
     int y2 = 0;
     int x3 = 0;
     int y3 = 0;
+    int x4 = 0;
+    int y4 = 0;
     
     LinkedList<String> sprite_names = new LinkedList<String>();
   
@@ -28,6 +30,30 @@ public class appContainer extends app
     	setSpritePose(pencil, 0 , 0, 0);
     	setWindowBackgroundColor(Color.WHITE);
     	playAudioFile("enter.wav");	
+    }
+    void checkNumX()
+    {
+    	if((x - x1) > (x1 - x))
+    	{
+    		x4 = (x - x1);
+    	}
+    	else
+    	{
+    		x4 = (x1 - x);
+    		x1 = x;
+    	}
+    }
+    void checkNumY()
+    {
+    	if((y - y1) > (y1 - y))
+    	{
+    		y4 = (y - y1);
+    	}
+    	else
+    	{
+    		y4 = (y1 - y);
+    		y1 = y;
+    	}
     }
     void drawInstructions()
     {
@@ -152,25 +178,33 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'Y')
         	{
-        		drawRectangle(Color.BLACK, x1, y1, x - x1, y - y1);
+        		checkNumX();
+        		checkNumY();
+        		drawRectangle(Color.BLACK, x1, y1, x4 , y4 );
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	else if(getCurrentKeyPressed() == 'O')
         	{
-        		drawRectangle(Color.WHITE, x1, y1, x - x1, y - y1);
+        		checkNumX();
+        		checkNumY();
+        		drawRectangle(Color.WHITE, x1, y1, x4, y4);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	else if(getCurrentKeyPressed() == 'U')
         	{
-        		drawOval(Color.BLACK, x1, y1, x - x1, y - y1);
+        		checkNumX();
+        		checkNumY();
+        		drawOval(Color.BLACK, x1, y1, x4, y4);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	else if(getCurrentKeyPressed() == 'P')
         	{
-        		drawOval(Color.WHITE, x1, y1, x - x1, y - y1);
+        		checkNumX();
+        		checkNumY();
+        		drawOval(Color.WHITE, x1, y1, x4, y4);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
