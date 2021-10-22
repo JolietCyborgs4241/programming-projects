@@ -41,7 +41,7 @@ public class appContainer extends app
         drawText(Color.CYAN, 5, 80, "There is no undo button, so be careful!");
      /*
      there are other commands, i just didn't want to include them as they are too complicated
-     X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping
+     X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons
      Z = draws a white line over the most recently drawn line, can act as a pseudo-undo
      try and find the hidden command! :)
      */
