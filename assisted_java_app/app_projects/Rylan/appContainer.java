@@ -21,6 +21,8 @@ public class appContainer extends app
     int y3 = 0;
     int x4 = 0;
     int y4 = 0;
+    int x5 = 0;
+    int y5 = 0;
     
     LinkedList<String> sprite_names = new LinkedList<String>();
   
@@ -67,8 +69,9 @@ public class appContainer extends app
         drawText(Color.CYAN, 5, 80, "There is no undo button, so be careful!");
      /*
      *there are other commands, i just didn't want to include them as they are too complicated
-     *X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons
-     *Z = draws a white line over the most recently drawn line, can act as a pseudo-undo
+     *X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons.
+     *Z = draws a white line over the most recently drawn line, can act as a pseudo-undo.
+     *N&M set the pencil to where E was pressed on the X and Y axis, respectively. use for precision.
      *try and find the hidden command! :)
      */
     }
@@ -227,6 +230,16 @@ public class appContainer extends app
         	else if(getCurrentKeyPressed() == '.')
         	{
         		setSpriteImage(pencil, "pencil.png");
+        	}
+        	if(getCurrentKeyPressed() == 'N')
+        	{
+        		x5 = x3;
+        		x = x5;
+        	}
+        	else if(getCurrentKeyPressed() == 'M')
+        	{
+        		y5 = y3;
+        		y = y5;
         	}
         	sleep(refresh_millis);
         }
