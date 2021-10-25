@@ -59,14 +59,14 @@ public class appContainer extends app
     }
     void drawInstructions()
     {
-    	drawText(Color.CYAN, 5, 10, "WASD = Move");
-        drawText(Color.CYAN, 5, 20, "E = Set drawing starting point");
-        drawText(Color.CYAN, 5, 30, "R = Clear");
-        drawText(Color.CYAN, 5, 40, "T&I = Draw line");
-        drawText(Color.CYAN, 5, 50, "Y&O = Draw rectangle");
-        drawText(Color.CYAN, 5, 60, "U&P = Draw oval");
-        drawText(Color.CYAN, 5, 70, "0-9 = Change BG color");
-        drawText(Color.CYAN, 5, 80, "There is no undo button, so be careful!");
+    	drawText(Color.lightGray, 5, 10, "WASD = Move");
+        drawText(Color.lightGray, 5, 20, "E = Set drawing starting point");
+        drawText(Color.lightGray, 5, 30, "R = Clear");
+        drawText(Color.lightGray, 5, 40, "T&I = Draw line");
+        drawText(Color.lightGray, 5, 50, "Y&O = Draw rectangle");
+        drawText(Color.lightGray, 5, 60, "U&P = Draw oval");
+        drawText(Color.lightGray, 5, 70, "0-9 = Change BG color");
+        drawText(Color.lightGray, 5, 80, "There is no undo button, so be careful!");
      /*
      *there are other commands, i just didn't want to include them as they are too complicated
      *X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons.
