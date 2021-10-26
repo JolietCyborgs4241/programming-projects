@@ -23,6 +23,8 @@ public class appContainer extends app
     int y4 = 0;
     int x5 = 0;
     int y5 = 0;
+    Color cc = Color.WHITE;
+    Color cc2 = Color.BLACK;
     
     LinkedList<String> sprite_names = new LinkedList<String>();
   
@@ -59,22 +61,42 @@ public class appContainer extends app
     }
     void drawInstructions()
     {
-    	drawText(Color.lightGray, 5, 10, "WASD = Move");
-        drawText(Color.lightGray, 5, 20, "E = Set drawing starting point");
-        drawText(Color.lightGray, 5, 30, "R = Clear");
-        drawText(Color.lightGray, 5, 40, "T&I = Draw line");
-        drawText(Color.lightGray, 5, 50, "Y&O = Draw rectangle");
-        drawText(Color.lightGray, 5, 60, "U&P = Draw oval");
-        drawText(Color.lightGray, 5, 70, "0-9 = Change BG color");
-        drawText(Color.lightGray, 5, 80, "There is no undo button, so be careful!");
+    	if (Color.BLACK == cc )
+    	{
+    		drawText(Color.WHITE, 5, 10, "WASD = Move");
+            drawText(Color.WHITE, 5, 20, "E = Set drawing starting point");
+            drawText(Color.WHITE, 5, 30, "R = Clear");
+            drawText(Color.WHITE, 5, 40, "T = Draw line");
+            drawText(Color.WHITE, 5, 50, "Y = Draw rectangle");
+            drawText(Color.WHITE, 5, 60, "U = Draw oval");
+            drawText(Color.WHITE, 5, 70, "0-9 = Change BG color");
+            drawText(Color.WHITE, 5, 80, "There is no undo button, so be careful!");
+            drawText(Color.WHITE, 5, 90, "Numpad 0-9 = Change drawing color");
+
+    	}
+    	else
+    	{
+    		drawText(Color.BLACK, 5, 10, "WASD = Move");
+            drawText(Color.BLACK, 5, 20, "E = Set drawing starting point");
+            drawText(Color.BLACK, 5, 30, "R = Clear");
+            drawText(Color.BLACK, 5, 40, "T&I = Draw line");
+            drawText(Color.BLACK, 5, 50, "Y&O = Draw rectangle");
+            drawText(Color.BLACK, 5, 60, "U&P = Draw oval");
+            drawText(Color.BLACK, 5, 70, "0-9 = Change BG color");
+            drawText(Color.BLACK, 5, 80, "There is no undo button, so be careful!");
+            drawText(Color.BLACK, 5, 90, "Numpad 0-9 = Change drawing color");
+    	}
+    }
+   
+    
+    	
      /*
      *there are other commands, i just didn't want to include them as they are too complicated
      *X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons.
      *Z = draws a white line over the most recently drawn line, can act as a pseudo-undo.
-     *N&M set the pencil to where E was pressed on the X and Y axis, respectively. use for precision.
+     *F&G set the pencil to where E was pressed on the X and Y axis, respectively. use for precision.
      *try and find the hidden command! :)
      */
-    }
     
     public void execute()
     {
@@ -82,46 +104,67 @@ public class appContainer extends app
         drawInstructions();
         while(true)
         {   	              
+        	System.out.println((char)getCurrentKeyPressed());
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
         	{
         		setWindowBackgroundColor(Color.WHITE);
+        		cc = Color.WHITE;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '1')
         	{
         		setWindowBackgroundColor(Color.RED);
+        		cc = Color.RED;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '2')
         	{
         		setWindowBackgroundColor(Color.ORANGE);
+        		cc = Color.ORANGE;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '3')
         	{
         		setWindowBackgroundColor(Color.YELLOW);
+        		cc = Color.YELLOW;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '4')
         	{
         		setWindowBackgroundColor(Color.GREEN);
+        		cc = Color.GREEN;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '5')
         	{
         		setWindowBackgroundColor(Color.BLUE);
+        		cc = Color.BLUE;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '6')
         	{
         		setWindowBackgroundColor(Color.MAGENTA);
+        		cc = Color.MAGENTA;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '7')
         	{
         		setWindowBackgroundColor(Color.PINK);
+        		cc = Color.PINK;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '8')
         	{
         		setWindowBackgroundColor(Color.GRAY);
+        		cc = Color.GRAY;
+        		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '9')
         	{
         		setWindowBackgroundColor(Color.BLACK);
+        		cc = Color.BLACK;
+        		drawInstructions();
         	}
         	if(getCurrentKeyPressed() == 'S')
         	{
@@ -150,7 +193,7 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'T')
         	{
-        		drawLine(Color.BLACK, x1, y1, x , y);
+        		drawLine(cc2, x1, y1, x , y);
         		x2 = x1;
         		y2 = y1;
         		x1 = x;
@@ -160,21 +203,7 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'X')
         	{
-        		drawLine(Color.BLACK, x, y, x3, y3);
-        		playAudioFile("draw.wav");
-        		sleep(500);
-        	}
-        	else if(getCurrentKeyPressed() == 'C')
-        	{
-        		drawLine(Color.WHITE, x, y, x3, y3);
-        		playAudioFile("draw.wav");
-        		sleep(500);
-        	}
-        	else if(getCurrentKeyPressed() == 'I')
-        	{
-        		drawLine(Color.WHITE, x1, y1, x , y);
-        		x1 = x;
-        		y1 = y;
+        		drawLine(cc2, x, y, x3, y3);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
@@ -182,15 +211,7 @@ public class appContainer extends app
         	{
         		checkNumX();
         		checkNumY();
-        		drawRectangle(Color.BLACK, x1, y1, x4 , y4 );
-        		playAudioFile("draw.wav");
-        		sleep(500);
-        	}
-        	else if(getCurrentKeyPressed() == 'O')
-        	{
-        		checkNumX();
-        		checkNumY();
-        		drawRectangle(Color.WHITE, x1, y1, x4, y4);
+        		drawRectangle(cc2, x1, y1, x4 , y4 );
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
@@ -199,14 +220,6 @@ public class appContainer extends app
         		checkNumX();
         		checkNumY();
         		drawOval(Color.BLACK, x1, y1, x4, y4);
-        		playAudioFile("draw.wav");
-        		sleep(500);
-        	}
-        	else if(getCurrentKeyPressed() == 'P')
-        	{
-        		checkNumX();
-        		checkNumY();
-        		drawOval(Color.WHITE, x1, y1, x4, y4);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
