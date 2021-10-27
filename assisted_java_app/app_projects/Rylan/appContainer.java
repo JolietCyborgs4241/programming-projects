@@ -182,38 +182,12 @@ public class appContainer extends app
     		cc2 = Color.BLACK;
     	}
     }
-    
-    void eerieloop()
-    {  
-    	int b = (int)(Math.random()*(max-min+1)+min);  
-    	if(b == 32);
-    	{
-    		playAudioFile("Lina.wav");
-    	}
-    	if(b == 1583);
-    	{
-    		playAudioFile("EerieLoop.wav");
-    	}
-    	if(b == 8104);
-    	{
-    		playAudioFile("Windmill.wav");
-    	}
-    	if(b == 431);
-    	{
-    		playAudioFile("Spook.wav");
-    	}
-    	if(b == 666);
-    	{
-    		playAudioFile("EerieLoop2");
-    	}
-    }
     public void execute()
     {
         setup(); 
         drawInstructions();
         while(true)
         {   	              
-        	eerieloop();
         	setColor();
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
