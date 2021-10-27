@@ -79,17 +79,14 @@ public class appContainer extends app
     		drawText(Color.BLACK, 5, 10, "WASD = Move");
             drawText(Color.BLACK, 5, 20, "E = Set drawing starting point");
             drawText(Color.BLACK, 5, 30, "R = Clear");
-            drawText(Color.BLACK, 5, 40, "T&I = Draw line");
-            drawText(Color.BLACK, 5, 50, "Y&O = Draw rectangle");
-            drawText(Color.BLACK, 5, 60, "U&P = Draw oval");
+            drawText(Color.BLACK, 5, 40, "T = Draw line");
+            drawText(Color.BLACK, 5, 50, "Y = Draw rectangle");
+            drawText(Color.BLACK, 5, 60, "U = Draw oval");
             drawText(Color.BLACK, 5, 70, "0-9 = Change BG color");
             drawText(Color.BLACK, 5, 80, "There is no undo button, so be careful!");
             drawText(Color.BLACK, 5, 90, "Numpad 0-9 = Change drawing color");
     	}
-    }
-   
-    
-    	
+    } 	
      /*
      *there are other commands, i just didn't want to include them as they are too complicated
      *X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons.
@@ -97,14 +94,56 @@ public class appContainer extends app
      *F&G set the pencil to where E was pressed on the X and Y axis, respectively. use for precision.
      *try and find the hidden command! :)
      */
-    
+    void setColor()
+    {
+    	if(getCurrentKeyPressed() == '`')
+    	{
+    		cc2 = Color.WHITE;
+    	}
+    	else if(getCurrentKeyPressed() == 'a')
+    	{
+    		cc2 = Color.RED;
+    	}
+    	else if(getCurrentKeyPressed() == 'b')
+    	{
+    		cc2 = Color.ORANGE;
+    	}
+    	else if(getCurrentKeyPressed() == 'c')
+    	{
+    		cc2 = Color.YELLOW;
+    	}
+    	else if(getCurrentKeyPressed() == 'd')
+    	{
+    		cc2 = Color.GREEN;
+    	}
+    	else if(getCurrentKeyPressed() == 'e')
+    	{
+    		cc2 = Color.BLUE;
+    	}
+    	else if(getCurrentKeyPressed() == 'f')
+    	{
+    		cc2 = Color.MAGENTA;
+    	}
+    	else if(getCurrentKeyPressed() == 'g')
+    	{
+    		cc2 = Color.PINK;
+    	}
+    	else if(getCurrentKeyPressed() == 'h')
+    	{
+    		cc2 = Color.GRAY;
+    	}
+    	else if(getCurrentKeyPressed() == 'i')
+    	{
+    		cc2 = Color.BLACK;
+    	}
+    }
     public void execute()
     {
         setup(); 
         drawInstructions();
         while(true)
         {   	              
-        	System.out.println((char)getCurrentKeyPressed());
+        	setColor();
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
         	{
@@ -225,14 +264,14 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == 'Z')
         	{
-        		drawLine(Color.WHITE, x, y, x2, y2);
+        		drawLine(cc, x, y, x2, y2);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	if(getCurrentKeyPressed() == 'R')
         	{
         		clearDrawings();
-        		playAudioFile("draw.wav");
+        		playAudioFile("LTuneDLGLoop.wav");
         		drawInstructions();
         		sleep(500);
         	}
