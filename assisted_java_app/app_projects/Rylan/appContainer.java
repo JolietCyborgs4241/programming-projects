@@ -2,6 +2,8 @@ import lower_level.app;
 import java.awt.*;
 import java.util.LinkedList;
 
+import javax.swing.text.AttributeSet.ColorAttribute;
+import java.lang.Math;
 public class appContainer extends app 
 { 
     public appContainer()
@@ -25,6 +27,8 @@ public class appContainer extends app
     int y5 = 0;
     Color cc = Color.WHITE;
     Color cc2 = Color.BLACK;
+    int min = 0;  
+    int max = 10000;  
     
     LinkedList<String> sprite_names = new LinkedList<String>();
   
@@ -92,6 +96,7 @@ public class appContainer extends app
      *X&C = draws a line that goes from the pencil to where E was pressed, use it for snapping & polygons.
      *Z = draws a white line over the most recently drawn line, can act as a pseudo-undo.
      *F&G set the pencil to where E was pressed on the X and Y axis, respectively. use for precision.
+     *IOPFGHJKLB can change the drawing color incase you don't have a numpad
      *try and find the hidden command! :)
      */
     void setColor()
@@ -136,6 +141,71 @@ public class appContainer extends app
     	{
     		cc2 = Color.BLACK;
     	}
+    	else if(getCurrentKeyPressed() == 'I')
+    	{
+    		cc2 = Color.WHITE;
+    	}
+    	else if(getCurrentKeyPressed() == 'O')
+    	{
+    		cc2 = Color.RED;
+    	}
+    	else if(getCurrentKeyPressed() == 'P')
+    	{
+    		cc2 = Color.ORANGE;
+    	}
+    	else if(getCurrentKeyPressed() == 'F')
+    	{
+    		cc2 = Color.YELLOW;
+    	}
+    	else if(getCurrentKeyPressed() == 'G')
+    	{
+    		cc2 = Color.GREEN;
+    	}
+    	else if(getCurrentKeyPressed() == 'H')
+    	{
+    		cc2 = Color.BLUE;
+    	}
+    	else if(getCurrentKeyPressed() == 'J')
+    	{
+    		cc2 = Color.MAGENTA;
+    	}
+    	else if(getCurrentKeyPressed() == 'K')
+    	{
+    		cc2 = Color.PINK;
+    	}
+    	else if(getCurrentKeyPressed() == 'L')
+    	{
+    		cc2 = Color.GRAY;
+    	}
+    	else if(getCurrentKeyPressed() == 'B')
+    	{
+    		cc2 = Color.BLACK;
+    	}
+    }
+    
+    void eerieloop()
+    {  
+    	int b = (int)(Math.random()*(max-min+1)+min);  
+    	if(b == 32);
+    	{
+    		playAudioFile("Lina.wav");
+    	}
+    	if(b == 1583);
+    	{
+    		playAudioFile("EerieLoop.wav");
+    	}
+    	if(b == 8104);
+    	{
+    		playAudioFile("Windmill.wav");
+    	}
+    	if(b == 431);
+    	{
+    		playAudioFile("Spook.wav");
+    	}
+    	if(b == 666);
+    	{
+    		playAudioFile("EerieLoop2");
+    	}
     }
     public void execute()
     {
@@ -143,12 +213,14 @@ public class appContainer extends app
         drawInstructions();
         while(true)
         {   	              
+        	eerieloop();
         	setColor();
         	setSpritePose(pencil, x , y, 0);
         	if(getCurrentKeyPressed() == '0')
         	{
         		setWindowBackgroundColor(Color.WHITE);
         		cc = Color.WHITE;
+        		cc2 = Color.BLACK;
         		drawInstructions();
         	}
         	else if(getCurrentKeyPressed() == '1')
@@ -203,6 +275,7 @@ public class appContainer extends app
         	{
         		setWindowBackgroundColor(Color.BLACK);
         		cc = Color.BLACK;
+        		cc2 = Color.WHITE;
         		drawInstructions();
         	}
         	if(getCurrentKeyPressed() == 'S')
