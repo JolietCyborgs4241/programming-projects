@@ -104,82 +104,102 @@ public class appContainer extends app
     	if(getCurrentKeyPressed() == '`')
     	{
     		cc2 = Color.WHITE;
+    		setSpriteImage(pencil, "PencilWhite.png");
     	}
     	else if(getCurrentKeyPressed() == 'a')
     	{
     		cc2 = Color.RED;
+    		setSpriteImage(pencil, "PencilRed.png");
     	}
     	else if(getCurrentKeyPressed() == 'b')
     	{
     		cc2 = Color.ORANGE;
+    		setSpriteImage(pencil, "PencilOrange.png");
     	}
     	else if(getCurrentKeyPressed() == 'c')
     	{
     		cc2 = Color.YELLOW;
+    		setSpriteImage(pencil, "PencilYellow.png");
     	}
     	else if(getCurrentKeyPressed() == 'd')
     	{
     		cc2 = Color.GREEN;
+    		setSpriteImage(pencil, "PencilGreen.png");
     	}
     	else if(getCurrentKeyPressed() == 'e')
     	{
     		cc2 = Color.BLUE;
+    		setSpriteImage(pencil, "PencilBlue.png");
     	}
     	else if(getCurrentKeyPressed() == 'f')
     	{
     		cc2 = Color.MAGENTA;
+    		setSpriteImage(pencil, "PencilMagenta.png");
     	}
     	else if(getCurrentKeyPressed() == 'g')
     	{
     		cc2 = Color.PINK;
+    		setSpriteImage(pencil, "PencilPink.png");
     	}
     	else if(getCurrentKeyPressed() == 'h')
     	{
     		cc2 = Color.GRAY;
+    		setSpriteImage(pencil, "PencilGray.png");
     	}
     	else if(getCurrentKeyPressed() == 'i')
     	{
     		cc2 = Color.BLACK;
+    		setSpriteImage(pencil, "PencilBlack.png");
     	}
     	else if(getCurrentKeyPressed() == 'I')
     	{
     		cc2 = Color.WHITE;
+    		setSpriteImage(pencil, "PencilWhite.png");
     	}
     	else if(getCurrentKeyPressed() == 'O')
     	{
     		cc2 = Color.RED;
+    		setSpriteImage(pencil, "PencilRed.png");
     	}
     	else if(getCurrentKeyPressed() == 'P')
     	{
     		cc2 = Color.ORANGE;
+    		setSpriteImage(pencil, "PencilOrange.png");
     	}
     	else if(getCurrentKeyPressed() == 'F')
     	{
     		cc2 = Color.YELLOW;
+    		setSpriteImage(pencil, "PencilYellow.png");
     	}
     	else if(getCurrentKeyPressed() == 'G')
     	{
     		cc2 = Color.GREEN;
+    		setSpriteImage(pencil, "PencilGreen.png");
     	}
     	else if(getCurrentKeyPressed() == 'H')
     	{
     		cc2 = Color.BLUE;
+    		setSpriteImage(pencil, "PencilBlue.png");
     	}
     	else if(getCurrentKeyPressed() == 'J')
     	{
     		cc2 = Color.MAGENTA;
+    		setSpriteImage(pencil, "PencilMagenta.png");
     	}
     	else if(getCurrentKeyPressed() == 'K')
     	{
     		cc2 = Color.PINK;
+    		setSpriteImage(pencil, "PencilPink.png");
     	}
     	else if(getCurrentKeyPressed() == 'L')
     	{
     		cc2 = Color.GRAY;
+    		setSpriteImage(pencil, "PencilGray.png");
     	}
     	else if(getCurrentKeyPressed() == 'B')
     	{
     		cc2 = Color.BLACK;
+    		setSpriteImage(pencil, "PencilBlack.png");
     	}
     }
     public void execute()
@@ -305,14 +325,14 @@ public class appContainer extends app
         	{
         		checkNumX();
         		checkNumY();
-        		drawOval(Color.BLACK, x1, y1, x4, y4);
+        		drawOval(cc2, x1, y1, x4, y4);
         		playAudioFile("draw.wav");
         		sleep(500);
         	}
         	else if(getCurrentKeyPressed() == 'Z')
         	{
         		drawLine(cc, x, y, x2, y2);
-        		playAudioFile("draw.wav");
+        		playAudioFile("LTuneDLGLoop.wav");
         		sleep(500);
         	}
         	if(getCurrentKeyPressed() == 'R')
