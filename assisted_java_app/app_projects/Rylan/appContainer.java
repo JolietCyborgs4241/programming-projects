@@ -34,7 +34,7 @@ public class appContainer extends app
   
     void setup()
     {
-    	createSprite(pencil, "Pencil.png");
+    	createSprite(pencil, "PencilBlack.png");
     	setSpritePose(pencil, 0 , 0, 0);
     	setWindowBackgroundColor(Color.WHITE);
     	playAudioFile("enter.wav");	
@@ -348,7 +348,7 @@ public class appContainer extends app
         	}
         	else if(getCurrentKeyPressed() == '.')
         	{
-        		setSpriteImage(pencil, "pencil.png");
+        		setSpriteImage(pencil, "PencilBlack.png");
         	}
         	if(getCurrentKeyPressed() == 'N')
         	{
