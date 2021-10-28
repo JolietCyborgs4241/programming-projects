@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import lower_level.fundamentals.constants;
 
+@SuppressWarnings("serial")
 public class app extends JFrame
 {
     private appWindow window = new appWindow(); 

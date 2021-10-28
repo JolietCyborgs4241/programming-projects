@@ -1,9 +1,7 @@
 import lower_level.app;
 import java.awt.*;
 import java.util.LinkedList;
-
-import javax.swing.text.AttributeSet.ColorAttribute;
-import java.lang.Math;
+@SuppressWarnings("serial")
 public class appContainer extends app 
 { 
     public appContainer()

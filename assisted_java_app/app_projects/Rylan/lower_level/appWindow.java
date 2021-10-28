@@ -7,6 +7,7 @@ import lower_level.fundamentals.sprite;
 import java.awt.*;
 import java.util.LinkedList; 
 
+@SuppressWarnings("serial")
 public class appWindow extends JPanel
 {
     private LinkedList<sprite> sprites = new LinkedList<sprite>();
