@@ -1,4 +1,5 @@
 import lower_level.app;
+import lower_level.fundamentals.constants;
 
 /* 
     This is where your app should be created. All code relavent to your app goes in this file, and any
@@ -37,47 +38,52 @@ public class appContainer extends app
         super();
     }
     
+    String paddle = new String();
+    String ball = new String();
+    
+    int ballX = 0, ballY = 0;
+    int paddleX = 0, paddleY = 300;
+    
+    boolean gameOver = false;
+    
     void setup()
     {
-    	createSprite("block", "block.png");
-    	createSprite("greenball", "greenball.png");
-    	setSpritePose("block", 575, 575, 0);
-    	setSpritePose("greenball", 655, 535, 0);
+    	createSprite(paddle, "block.png");
+    	setSpritePose(paddle, paddleX, paddleY, 0);
+ 
+    	createSprite(ball, "greenball.png");
+    	setSpritePose(ball, ballX, ballY, 0);
     }
+    
+    void display()
+    {
+    	setSpritePose(paddle, paddleX, paddleY, 0);
+    	setSpritePose(ball, ballX, ballY, 0);
+    }
+    
+    void userInput()
+    {
+    	if(getCurrentKeyPressed() == 'J')
+    	{
+    		paddleX--;
+    	}
+    	else if(getCurrentKeyPressed() == 'K')
+    	{
+    		paddleX++;
+    	}
+    }
+
 
     public void execute()
     {  
-        int blockX = 575;
-        int blockY = 575;
-        int ballX = 655;
-        int ballY = 530;
+    	setup();
         
-        setup();
-        
-        while (true) 
-        {           
-        	if(getCurrentKeyPressed() == 'J'  && blockX > 0) 
-        	{
-        		blockX--;	
-        	}
-        	else if(getCurrentKeyPressed() == 'L' && blockX < 400) 
-        	{
-        		blockX++;	
-        	}
-        	sleep(1);
-                       
-            if(getCurrentKeyPressed() == 'I') 
-            	{
-            		while(ballY < 550) 
-            		{
-            			setSpritePose("greenball", 655, ballY, 0);
-            			ballY--;
-            			sleep(3);
-            		}   	
-            	}	
-               
-            setSpritePose("block", blockX, blockY, 0);
-        }   	   
+    	while(!gameOver)
+    	{
+    		userInput();
+    		display();
+    		sleep(2);
+    	}
     }   
  }
 
