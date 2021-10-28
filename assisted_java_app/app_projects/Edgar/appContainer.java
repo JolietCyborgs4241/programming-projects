@@ -36,52 +36,48 @@ public class appContainer extends app
     {
         super();
     }
+    
+    void setup()
+    {
+    	createSprite("block", "block.png");
+    	createSprite("greenball", "greenball.png");
+    	setSpritePose("block", 575, 575, 0);
+    	setSpritePose("greenball", 655, 535, 0);
+    }
 
     public void execute()
-    {
-    	createSprite("ball", "ball.png");
-        setSpritePose("ball", 350, 300, 0);
-        createSprite("paddle_1", "paddle.png"); 
-        setSpritePose("paddle_1", 100, 200, 0);    
-        createSprite("paddle_2", "paddle.png");
-        setSpritePose("paddle_2", 600, 200, 0 );
+    {  
+        int blockX = 575;
+        int blockY = 575;
+        int ballX = 655;
+        int ballY = 530;
         
-        int paddle1x = 0;
-        int paddle1y = 100;
-        int paddle2x = 750;
-        int paddle2y = 100;
-        int x = 0;
-      
-        	while (true) 
-        	{ 
-        		
-        		setSpritePose("paddle_1", paddle1x, paddle1y, 0);
-        			
-        		if(getCurrentKeyPressed() == 'A') 
-        		{
-        			paddle1y++;
-        		}
-        		else if(getCurrentKeyPressed() == 'D') 
-        		{
-        			paddle1y--;
-        		}	
-        	
-        		setSpritePose("paddle_2", paddle2x, paddle2y, 0);
-        		
-        		if(getCurrentKeyPressed() == 'J') 
-        		{
-        			paddle2y++;
-        		}
-        		else if(getCurrentKeyPressed() == 'L') 
-        		{
-        			paddle2y--;
-        		}
-        		sleep(2);
-        	    
-        		
-        	   
+        setup();
+        
+        while (true) 
+        {           
+        	if(getCurrentKeyPressed() == 'J'  && blockX > 0) 
+        	{
+        		blockX--;	
         	}
-        	
-       
-    }
-}
+        	else if(getCurrentKeyPressed() == 'L' && blockX < 400) 
+        	{
+        		blockX++;	
+        	}
+        	sleep(1);
+                       
+            if(getCurrentKeyPressed() == 'I') 
+            	{
+            		while(ballY < 550) 
+            		{
+            			setSpritePose("greenball", 655, ballY, 0);
+            			ballY--;
+            			sleep(3);
+            		}   	
+            	}	
+               
+            setSpritePose("block", blockX, blockY, 0);
+        }   	   
+    }   
+ }
+
