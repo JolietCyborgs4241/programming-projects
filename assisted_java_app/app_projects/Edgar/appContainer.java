@@ -41,8 +41,8 @@ public class appContainer extends app
     String paddle = new String();
     String ball = new String();
     
-    int ballX = 0, ballY = 0;
-    int paddleX = 0, paddleY = 300;
+    int ballX = 925, ballY = 860;
+    int paddleX = 850, paddleY = 900;
     
     boolean gameOver = false;
     
@@ -67,7 +67,7 @@ public class appContainer extends app
     	{
     		paddleX--;
     	}
-    	else if(getCurrentKeyPressed() == 'K')
+    	else if(getCurrentKeyPressed() == 'L')
     	{
     		paddleX++;
     	}
@@ -82,7 +82,7 @@ public class appContainer extends app
     	{
     		userInput();
     		display();
-    		sleep(2);
+    		sleep(1);
     	}
     }   
  }
