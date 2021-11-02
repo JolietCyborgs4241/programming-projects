@@ -1,5 +1,6 @@
 package lower_level;
-
+//each of the files in the lower level file are classes.  They help structure program.
+//(OOP) object oriented program
 import java.awt.*;
 import javax.swing.*;
 
