@@ -35,6 +35,11 @@ public class appContainer extends app
     public appContainer()
     {
         super();
+        string player = "player";
+        int playx = 0;
+        int playy = 0;
+        int x1 = 0;
+        int y1 = 0;
     }
 
     public void execute()
