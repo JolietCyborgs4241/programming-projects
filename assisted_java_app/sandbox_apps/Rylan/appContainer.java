@@ -1,5 +1,5 @@
 import lower_level.app;
-
+import java.awt. *;
 /* 
     This is where your app should be created. All code relavent to your app goes in this file, and any
     images for sprites should be put into the "sprites" folder. 
@@ -35,15 +35,32 @@ public class appContainer extends app
     public appContainer()
     {
         super();
-        string player = "player";
-        int playx = 0;
-        int playy = 0;
-        int x1 = 0;
-        int y1 = 0;
     }
-
+    string player = "player";
+    int playx = 0;
+    int playy = 0;
+    int y = 70;
+    int x1 = 0;
+    int x2 = 0;
+    int x3 = 0;
+    int x4 = 0;
+    int x5 = 0;
+    int score = 0;
+    
+    void setup()
+    {
+    	createSprite(player, 100, 250, 0);
+    	createSprite("debris1", 0, y, 0);
+    	createSprite("debris2", 0, y, 0);
+    	createSprite("debris3", 0, y, 0);
+    	createSprite("debris4", 0, y, 0);
+    	createSprite("debris5", 0, y, 0);
+    	drawRectangle(Color.WHITE, 0, 0, 100, 500);
+    }
+    
     public void execute()
     {
+        setup();
         
     }
 }
